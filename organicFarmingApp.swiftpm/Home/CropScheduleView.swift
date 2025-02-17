@@ -13,13 +13,11 @@ struct CropScheduleView: View {
     let sowingDate: String
     let closingDate: String
     
-    
     @Environment(\.dismiss) private var dismiss
     @State private var selectedFilter: TaskFilter = .futureTasks
     @State private var navigateToHome = false
     @State private var navigateToCrop = false
 
-    
     let vegetativeTasks: [Task] = [
         Task(title: "Seed Treatment", startDate: "15/02/2025", endDate: "16/02/2025"),
         Task(title: "Irrigation", startDate: "17/02/2025", endDate: "18/02/2025"),
@@ -32,7 +30,6 @@ struct CropScheduleView: View {
         NavigationStack {
             VStack(spacing: 0) {
                 //  Custom Navigation Header
-                Spacer(minLength: 60)
                 HStack {
                     // Back Button
                     Button(action: { dismiss() }) {
@@ -40,7 +37,7 @@ struct CropScheduleView: View {
                             .font(.title2)
                             .foregroundColor(.black)
                             .padding(16)
-                          //  .background(Color.green)
+                           // .background(Color.green) // Green background for the back button
                             .clipShape(Circle())
                     }
                     
@@ -55,7 +52,6 @@ struct CropScheduleView: View {
                     Spacer(minLength: 8)
                     
                     // "Done" Button
-                    // Done Button
                     Button(action: { goToHomeScreen() }) {
                         Text("Done")
                             .font(.headline)
@@ -66,7 +62,11 @@ struct CropScheduleView: View {
 
                 }
                 .padding(.horizontal, 8)
-                .background(Color.green.opacity(0.3)) //  Green background for the entire bar
+                .background(Color.green.opacity(0.3)) // Set green color as the background for the header
+                .safeAreaInset(edge: .top) {
+                    Color.green.opacity(0.01) // Ensure this part stays within the safe area
+                        .frame(height: 45) // Increase this height to push the header more down
+                }
                 
                 ScrollView {
                     VStack(spacing: 0) {
@@ -115,11 +115,8 @@ struct CropScheduleView: View {
                 NavigationLink(destination: HomeView(), isActive: $navigateToHome) {
                                     EmptyView()
                                 }
-//                NavigationLink(destination: CropView(), isActive: $navigateToCrop) {
-//                                EmptyView()
-//                            }
             }
-            .edgesIgnoringSafeArea(.top) // ✅ Extends green background to the top
+            .edgesIgnoringSafeArea(.top) // ✅ Ensures the content fits below the header correctly
         }
     }
 }

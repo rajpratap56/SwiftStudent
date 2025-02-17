@@ -179,54 +179,18 @@ struct CropNextScreenView: View {
             .sheet(isPresented: $showIrrigationMethodPopup) {
                 SelectionPopupView(title: "Select Irrigation Method", options: ["Drip", "Sprinkler", "Flood", "Manual"], selectedOption: $selectedIrrigationMethod, isPresented: $showIrrigationMethodPopup)
             }
+            .gesture(
+                TapGesture()
+                    .onEnded {
+                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                    }
+            )
         }
-
+    }
 
         
     }
     
-    // Function to show popups
-//    private func showPopup(title: String, options: [String], selection: Binding<String>) {
-//        
-//        popupTitle = title
-//        popupOptions = options
-//        popupBinding = selection
-//        
-//        // Ensuring UI updates happen after state change
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-//                isPopupPresented = true
-//            
-//            }
-//    }
-    
-
-
-
-
-}
-//struct FarmingDetailRow: View {
-//    let icon: String
-//    let title: String
-//    let value: String
-//
-//    var body: some View {
-//        HStack {
-//            Image(systemName: icon)
-//                .foregroundColor(.brown)
-//                .frame(width: 24, height: 24)
-//            Text(title)
-//                .font(.body)
-//                .foregroundColor(.black)
-//            Spacer()
-//            Text(value)
-//                .foregroundColor(.gray)
-//            Image(systemName: "chevron.right")
-//                .foregroundColor(.gray)
-//        }
-//        .padding()
-//        .background(RoundedRectangle(cornerRadius: 10).stroke(Color.gray.opacity(0.3), lineWidth: 1))
-//    }
-//}
 struct FarmingDetailRow: View {
     let icon: String
     let title: String

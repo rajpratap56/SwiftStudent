@@ -15,7 +15,6 @@ struct AdvisoryView: View {
     @State private var selectedImage: UIImage? = nil
     @State private var showResultScreen = false
     
-
     let savedCrops = ["Okra *Marvel", "Tomato Hybrid", "Wheat Premium", "Corn Elite"]
 
     var body: some View {
@@ -177,6 +176,12 @@ struct AdvisoryView: View {
                 ]
             )
         }
+        .gesture(
+            TapGesture()
+                .onEnded {
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                }
+        )
     }
 }
 struct CropSelectionPopup: View {
@@ -226,4 +231,4 @@ struct CropSelectionPopup: View {
         .background(Color.white.cornerRadius(16))
         .padding(.horizontal, 10)
     }
-}
+} 
