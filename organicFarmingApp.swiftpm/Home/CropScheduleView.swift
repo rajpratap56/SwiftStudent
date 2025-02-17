@@ -172,7 +172,7 @@ struct TaskFilterButton: View {
 
     var body: some View {
         Text("\(title) (\(count))")
-            .padding(.horizontal, 12)
+            .frame(minWidth: 140, maxWidth: 160) // ✅ Fixed width range
             .padding(.vertical, 8)
             .background(isSelected ? Color.green.opacity(0.2) : Color.white)
             .foregroundColor(isSelected ? .green : .black)
@@ -181,6 +181,7 @@ struct TaskFilterButton: View {
             .animation(.easeInOut, value: isSelected)
     }
 }
+
 
 struct StageSection: View {
     let title: String
