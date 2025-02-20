@@ -60,17 +60,17 @@ struct CropDetailView: View {
             VStack(spacing: 12) {
                 // Select Season
                 Button(action: { showSeasonPicker.toggle() }) {
-                    CropSelectionRow(icon: "sun.max.fill", title: selectedSeason ?? "Please select season")
+                    CropSelectionRow(icon: "sun.max.fill", title: selectedSeason ?? "Select season")
                 }
                 
                 // Select Variety
                 Button(action: { showVarietyPicker.toggle() }) {
-                    CropSelectionRow(icon: "leaf.fill", title: selectedVariety ?? "Please select variety")
+                    CropSelectionRow(icon: "leaf.fill", title: selectedVariety ?? "Select variety")
                 }
 
                 // Select Date
                 Button(action: { showDatePicker.toggle() }) {
-                    CropSelectionRow(icon: "calendar", title: selectedDate ?? "Please select sowing date")
+                    CropSelectionRow(icon: "calendar", title: selectedDate ?? "Select sowing date")
                 }
             }
             .padding()
