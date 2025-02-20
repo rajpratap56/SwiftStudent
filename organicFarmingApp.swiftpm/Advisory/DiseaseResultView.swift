@@ -11,7 +11,13 @@ struct DiseaseResultView: View {
     var detectedDisease: (name: String, solution: String)? {
         uploadedImages.isEmpty ? nil : diseaseData.randomElement()
     }
-
+    @MainActor private func goToHomeScreen() {
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let window = windowScene.windows.first {
+            window.rootViewController = UIHostingController(rootView: ContentView()) // Replace with your TabView
+            window.makeKeyAndVisible()
+        }
+    }
     var body: some View {
         VStack {
             HStack {
@@ -98,8 +104,8 @@ struct DiseaseResultView: View {
             // Analyze Again Button
             Button(action: {
                 uploadedImages = []
-                dismiss() }) {
-                Text("Analyze Again")
+                goToHomeScreen() }) {
+                Text("Done")
                     .font(.title3)
                     .bold()
                     .foregroundColor(.white)
@@ -109,6 +115,8 @@ struct DiseaseResultView: View {
                     .cornerRadius(10)
             }
             .padding()
+            
+            
         }
         .background(Color.white.ignoresSafeArea())
     }
